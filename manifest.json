@@ -8,6 +8,12 @@
     "default_popup": "index.html",
     "default_icon" : "images/icon.png"
   },
+  "background": {
+    "persistent": false,
+    "scripts": [
+      "app/tabsZen-background.js"
+    ]
+  },
   "permissions": [
     "debugger",
     "storage",
