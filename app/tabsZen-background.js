@@ -6,11 +6,12 @@ var tabsZenBackground = (function() {
           console.log('syncing');
           chrome.storage.sync.set({'currentTabsInfo': currentTabsInfo});
         },
-        createDefaultTabInfo: function(tabId) {
+        createDefaultTabInfo: function(tabId, url) {
           currentTabsInfo[tabId] = {
             createdAt: Date.now(),
             visitedAt: Date.now(),
-            timesVisited: 1
+            timesVisited: 1,
+            url: url
           };
         },
         getCurrentTabs: function() {
@@ -19,7 +20,7 @@ var tabsZenBackground = (function() {
 
           chrome.tabs.query({windowId: currentWindowId}, function(tabs) {
             tabs.forEach(function(tab) {
-              if (!currentTabsInfo[tab.id]) { createDefaultTabInfo(tab.id);}
+              if (!currentTabsInfo[tab.id]) { createDefaultTabInfo(tab.id, tab.url);}
             });
             sync();
           });
@@ -29,7 +30,7 @@ var tabsZenBackground = (function() {
               createDefaultTabInfo = this.createDefaultTabInfo;
 
           chrome.tabs.onCreated.addListener(function(tab) {
-            createDefaultTabInfo(tab.id);
+            createDefaultTabInfo(tab.id, tab.url);
             sync();
           });
         },
