@@ -1,10 +1,8 @@
 angular.module('app').controller('tabController', function ($scope, TabService) {
-  $scope.currentWindowId = -2;
 
-  console.log('chrome.tabs ', chrome.tabs);
-
-  // load tabs from storage
-  TabService.init();
+  chrome.windows.getCurrent({}, function(window) {
+    TabService.init(window.id);
+  });
 
   $scope.saveOpenedTabs = function() {
     TabService.saveOpenedTabs();

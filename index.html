@@ -6,17 +6,19 @@
     <link rel="stylesheet" type="text/css" href="css/style.css">
   </head>
   <body ng-controller='tabController'>
-    <!-- capture current state -->
-    <div ng-click="saveOpenedTabs()">Save Opened Tabs</div>
-    <!-- sort by opened date -->
-    <div ng-click="sortBy('createdAt')">Sort by created at</div>
-    <!-- sort by time since last visited -->
-    <div ng-click="sortBy('visitedAt')">Sort by visited at</div>
-    <!-- sort by most visited -->
-    <div ng-click="sortBy('timesVisited')">Sort by times visited</div>
-    <!-- (optional) undo (enabled/ disabled based on context) -->
-    <!-- (optional) open saved tabs (list of saved tabs url, each is link) -->
-    <!-- <div ng-click="openSavedTabs()">Open Saved Tabs</div> -->
+    <div class="popup">
+        <!-- capture current state -->
+        <div ng-click="saveOpenedTabs()">Save Opened Tabs</div>
+        <!-- sort by opened date -->
+        <div ng-click="sortBy('createdAt')">Sort by created at</div>
+        <!-- sort by time since last visited -->
+        <div ng-click="sortBy('visitedAt')">Sort by visited at</div>
+        <!-- sort by most visited -->
+        <div ng-click="sortBy('timesVisited')">Sort by times visited</div>
+        <!-- (optional) undo (enabled/ disabled based on context) -->
+        <!-- (optional) open saved tabs (list of saved tabs url, each is link) -->
+        <div ng-click="openSavedTabs()">Open Saved Tabs</div>
+    </div>
 
     <script type="text/javascript" src="lib/jquery/jquery-2.2.0.min.js"></script>
     <script type="text/javascript" src="lib/angular/angular.min.js"></script>

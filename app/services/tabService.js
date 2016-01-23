@@ -2,7 +2,8 @@
 
 angular.module('app').service('TabService', function () {
   _this = this;
-  this.tabsInfo = [];
+  this.currentWindowId;
+  this.tabsInfo = {}; // { id: { createdAt: Date, visitedAt: Date, timesVisited: Int}, ...}
   this.sortable = []; // [[id, createdAt, visitedAt, timesVisited], ...]
   this.sortParams = {
     createdAt: 1,
@@ -11,46 +12,53 @@ angular.module('app').service('TabService', function () {
   };
 
   // set tabs and assign metrics eg. visit count, time since last visited
-  this.init = function() {
+  this.init = function(windowId) {
+    _this.currentWindowId = windowId;
+
     chrome.storage.sync.get('currentTabsInfo', function(storedItem) {
-      console.log('current tabs info (obj): ', storedItem);
-      console.log('storedItem.tabsInfo: ', storedItem.currentTabsInfo);
-      // _this.tabsInfo = storedItem.currentTabsInfo;
       var tabsInfo = storedItem.currentTabsInfo;
+      _this.tabsInfo = storedItem.currentTabsInfo;
       _this.sortable = [];
-      for (var tabInfo in tabsInfo) {
-        _this.sortable.push([
-          tabInfo,
-          tabsInfo[tabInfo].createdAt,
-          tabsInfo[tabInfo].visitedAt,
-          tabsInfo[tabInfo].timesVisited
-        ]);
+
+      for (var tabId in tabsInfo) {
+        if (tabsInfo[tabId].windowId === _this.currentWindowId) {
+          _this.sortable.push([
+            tabId,
+            tabsInfo[tabId].createdAt,
+            tabsInfo[tabId].visitedAt,
+            tabsInfo[tabId].timesVisited
+          ]);
+        }
       }
-      console.log('sortable: ', _this.sortable);
     });
   };
 
+  // save to chrome storage
   this.saveOpenedTabs = function() {
-    // save to chrome storage
-    console.log();
-    chrome.storage.sync.set({'storedTabsInfo': _this.tabsInfo}, function() {
-      console.log('saved');
-    });
+    chrome.storage.sync.set({'storedTabsInfo': _this.tabsInfo});
   };
 
+  // load from chrome storage and open tabs
   this.openSavedTabs = function() {
-    // load from chrome storage
-    var storedTabsInfo;
+    chrome.storage.sync.get('storedTabsInfo', function(storedItem) {
+      var storedTabsInfo = storedItem.storedTabsInfo;
 
-    chrome.storage.sync.get('storedTabsInfo', function(tabsInfo) {
-      storedTabsInfo = tabsInfo;
-      // open tabs in chrome
-      console.log(storedTabsInfo);
-
-      storedTabsInfo.forEach(function(tabInfo) {
-        // dont open the ones that are already opened?
-        chrome.tabs.create({ url: tabInfo.url });
-      });
+      if (storedTabsInfo) {
+        for (var id in storedTabsInfo) {
+          // if not already opened, open it
+          if (!_this.tabsInfo[id]) {
+            chrome.tabs.create({ url: storedTabsInfo[id].url }, function(tab) {
+              // update storage with newly opened tab
+              _this.tabsInfo[tab.id] = {
+                createdAt: Date.now(),
+                visitedAt: Date.now(),
+                timesVisited: 1,
+                url: tab.url
+              };
+            });
+          }
+        }
+      }
     });
   };
 
@@ -63,7 +71,6 @@ angular.module('app').service('TabService', function () {
       return a[sortParamIndex] - b[sortParamIndex];
     });
 
-    console.log('sorted by ' + param + ': ', sortedTabsInfo);
     _this.moveTabs(sortedTabsInfo);
   };
 
