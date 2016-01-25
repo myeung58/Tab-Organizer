@@ -1,8 +1,8 @@
 {
   "manifest_version": 2,
-  "name"            : "Tabs",
-  "description"     : "Tab organizer",
-  "short_name"      : "tabs",
+  "name"            : "tabsZen",
+  "description"     : "tabsZen is a tabs organizer for Chrome",
+  "short_name"      : "tabsZen",
   "version"         : "0.1",
   "browser_action": {
     "default_popup": "index.html",

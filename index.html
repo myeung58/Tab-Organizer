@@ -4,20 +4,33 @@
     <title>Tab Organizer</title>
     <link rel="stylesheet" type="text/css" href="lib/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
   </head>
   <body ng-controller='tabController'>
     <div class="popup">
+        <h3>tabsZen</h3>
         <!-- capture current state -->
-        <div ng-click="saveOpenedTabs()">Save Opened Tabs</div>
-        <!-- sort by opened date -->
-        <div ng-click="sortBy('createdAt')">Sort by created at</div>
-        <!-- sort by time since last visited -->
-        <div ng-click="sortBy('visitedAt')">Sort by visited at</div>
-        <!-- sort by most visited -->
-        <div ng-click="sortBy('timesVisited')">Sort by times visited</div>
-        <!-- (optional) undo (enabled/ disabled based on context) -->
-        <!-- (optional) open saved tabs (list of saved tabs url, each is link) -->
-        <div ng-click="openSavedTabs()">Open Saved Tabs</div>
+        <div class="action">
+            <div class="action-item save" ng-click="saveOpenedTabs()">Save Tabs</div>
+            <div class="action-item load" ng-click="openSavedTabs()">Load Tabs</div>
+        </div>
+        <div class="sort">
+            <p class="sort-header">Sort tabs by:</p>
+            <div class="sort-body">
+                <!-- sort by opened date -->
+                <div class="sort-item" ng-click="sortBy('createdAt')">Date Opened</div>
+                <!-- sort by time since last visited -->
+                <div class="sort-item" ng-click="sortBy('visitedAt')">Last Opened</div>
+                <!-- sort by most visited -->
+                <div class="sort-item" ng-click="sortBy('timesVisited')">Times Visited</div>
+            </div>
+        </div>
+        <div class="contribution">
+            <a class="contribution-content" href="https://github.com/myeung58/TabsZen" target="_blank">
+                <i class="fa fa-github fa-2x"></i>
+                <p class="contribution-message">Contribute on Github</p>
+            </a>
+        </div>
     </div>
 
     <script type="text/javascript" src="lib/jquery/jquery-2.2.0.min.js"></script>
