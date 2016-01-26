@@ -29,28 +29,24 @@ a {
 }
 
 .save {
-  /*background-color: #e5f6ff;*/
   background-color: #c3a3ff;
   color: white;
   border: 2px solid #c3a3ff;
 }
 
 .save:hover {
-  /*background-color: #ceeeff;*/
   background-color: #af87ff;
   color: white;
   border: 2px solid #af87ff;
 }
 
 .load {
-  /*background-color: #ffe8e8;*/
   background-color: white;
   color: #c3a3ff;
   border: 2px solid #c3a3ff;
 }
 
 .load:hover {
-  /*background-color: #ffe0e0;*/
   color: #af88fc;
   border: 2px solid #af88fc;
 }

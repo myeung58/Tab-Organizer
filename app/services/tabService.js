@@ -1,5 +1,3 @@
-// refactor all chrome actions into ChromeService
-
 angular.module('app').service('TabService', function () {
   _this = this;
   this.currentWindowId;
@@ -65,7 +63,7 @@ angular.module('app').service('TabService', function () {
   this.sortBy = function(param) {
     var sortable = _this.sortable,
         sortedTabsInfo = [],
-        sortParamIndex = _this.sortParams[param]; // arr
+        sortParamIndex = _this.sortParams[param];
 
     sortedTabsInfo = sortable.sort(function(a, b) {
       return a[sortParamIndex] - b[sortParamIndex];
