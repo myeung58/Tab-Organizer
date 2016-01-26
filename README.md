@@ -1,1 +1,2 @@
-Chrome Extension - Tab Orgranizer
+tabsZen - a Chrome extension
+

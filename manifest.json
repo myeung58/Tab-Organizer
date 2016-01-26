@@ -4,9 +4,14 @@
   "description"     : "tabsZen is a tabs organizer for Chrome",
   "short_name"      : "tabsZen",
   "version"         : "0.1",
+  "icons"           : {
+    "16": "images/icon16.png",
+    "48": "images/icon48.png",
+    "128": "images/icon128.png"
+  },
   "browser_action": {
     "default_popup": "index.html",
-    "default_icon" : "images/icon.png"
+    "default_icon" : "images/icon16.png"
   },
   "background": {
     "persistent": false,
