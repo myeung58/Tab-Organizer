@@ -8,26 +8,26 @@
   </head>
   <body ng-controller='tabController'>
     <div class="popup">
-        <h3>tabsZen</h3>
+        <h3 class="title">tabsZen</h3>
         <div class="action">
-            <div class="action-item save" ng-click="saveOpenedTabs()">Save Tabs</div>
-            <div class="action-item load" ng-click="openSavedTabs()">Load Tabs</div>
+            <div class="action__item save" ng-click="saveOpenedTabs()">Save Tabs</div>
+            <div class="action__item load" ng-click="openSavedTabs()">Load Tabs</div>
         </div>
         <div class="sort">
-            <p class="sort-header">Sort tabs by:</p>
-            <div class="sort-body">
+            <p class="sort__header">Sort tabs by:</p>
+            <div class="sort__body">
                 <!-- sort by opened date -->
-                <div class="sort-item" ng-click="sortBy('createdAt')">Date Opened</div>
+                <div class="sort__item" ng-click="sortBy('createdAt')">Date Opened</div>
                 <!-- sort by time since last visited -->
-                <div class="sort-item" ng-click="sortBy('visitedAt')">Last Opened</div>
+                <div class="sort__item" ng-click="sortBy('visitedAt')">Last Opened</div>
                 <!-- sort by most visited -->
-                <div class="sort-item" ng-click="sortBy('timesVisited')">Times Visited</div>
+                <div class="sort__item" ng-click="sortBy('timesVisited')">Times Visited</div>
             </div>
         </div>
         <div class="contribution">
-            <a class="contribution-content" href="https://github.com/myeung58/TabsZen" target="_blank">
+            <a class="contribution__content" href="https://github.com/myeung58/TabsZen" target="_blank">
                 <i class="fa fa-github fa-2x"></i>
-                <p class="contribution-message">Contribute on Github</p>
+                <p class="contribution__message">Contribute on Github</p>
             </a>
         </div>
     </div>

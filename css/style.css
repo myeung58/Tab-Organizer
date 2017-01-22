@@ -1,12 +1,7 @@
-h3 {
+.title {
   text-align: center;
   margin: 10px;
   color: #333232;
-}
-
-a {
-  font-size: 10px;
-  color: inherit;
 }
 
 .popup {
@@ -19,7 +14,7 @@ a {
   margin: 25px 10px 25px 10px;
 }
 
-.action-item {
+.action__item {
   display: inline;
   margin: 5px 10px 5px 10px;
   padding: 10px;
@@ -55,23 +50,23 @@ a {
   margin: 20px 10px 20px 10px;
 }
 
-.sort-header {
+.sort__header {
   margin: 0 0 5px 5px;
   font-weight: bold;
   font-size: 10px;
 }
 
-.sort-body {
+.sort__body {
   border: 2px solid #ededed;
   border-radius: 3px;
 }
 
-.sort-item {
+.sort__item {
   padding: 3px 10px 3px 15px;
   cursor: pointer;
 }
 
-.sort-item:hover {
+.sort__item:hover {
   background-color: #ededed;
 }
 
@@ -80,6 +75,11 @@ a {
   text-align: center;
 }
 
-.contribution-message {
+.contribution__content {
+  font-size: 10px;
+  color: inherit;
+}
+
+.contribution__message {
   margin-bottom: 5px;
 }
